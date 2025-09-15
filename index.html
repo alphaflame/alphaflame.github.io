@@ -88,6 +88,9 @@
             gap: 12px;
             text-decoration: none;
             color: var(--text);
+            position: relative; /* containing block for absolute logo */
+            min-height: 80px;   /* room for a larger logo */
+            padding-right: 140px; /* keep content clear of the logo area */
         }
         .brand {
             display: flex;
@@ -115,6 +118,27 @@
             border-radius: 10px;
         }
         .nav a:hover { color: var(--text); background: var(--bg-elev); }
+
+        /* Larger absolute-positioned Greyfeather logo (top-right) */
+        .logo-abs {
+            position: absolute;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 128px;     /* larger standard size */
+            width: auto;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-elev);
+            padding: 3px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+        @media (max-width: 640px) {
+            .logo-abs { height: 48px; right: 16px; }
+            .nav { padding-right: 104px; min-height: 68px; }
+        }
 
         /* Hero layout: fill the top area better */
         .hero {
@@ -154,14 +178,14 @@
         }
 
         .headline {
-            font-size: clamp(28px, 4vw, 44px);
+            font-size: clamp(18px, 4vw, 24px);
             line-height: 1.15;
             margin: 4px 0 12px;
             letter-spacing: -0.5px;
         }
         .subline {
             color: var(--muted);
-            font-size: clamp(16px, 2vw, 18px);
+            font-size: clamp(16px, 2vw, 14px);
             margin: 0 0 20px;
         }
 
@@ -341,13 +365,14 @@
     <div class="container nav">
         <a class="brand" href="#">
             <span class="dot" aria-hidden="true"></span>
-            <span>Michael Jones</span>
+            <span>Greyfeather</span>
         </a>
         <nav aria-label="Primary">
-            <a href="#builds">Practical Solutions</a>
+            <a href="#builds">Solutions Builder</a>
             <a href="#toolbox">Toolbox</a>
             <a href="#contact">Contact</a>
         </nav>
+        <img class="logo-abs" src="images/greyfeather.jpeg" alt="Greyfeather logo" />
     </div>
 </header>
 
@@ -355,7 +380,7 @@
     <section class="hero" id="about">
         <div class="hero-card">
             <p class="muted" style="margin:0 0 6px;">Software Engineer • United States</p>
-            <h1 class="headline">Solutions Builder</h1>
+            <h1 class="headline">Michael Jones</h1>
             <p class="subline">
                 Experienced at building production systems: payment gateways, microservices, and web apps. I lead with practicality—clean architecture, testing discipline, and a focus on operability.
             </p>
@@ -377,7 +402,7 @@
     </section>
 
     <section id="builds">
-        <p class="section-title">What I Build</p>
+        <p class="section-title">What We Build at Greyfeather</p>
         <div class="grid">
             <article class="card">
                 <h3>Payment Platforms</h3>
@@ -403,7 +428,7 @@
 
             <article class="card">
                 <h3>Messaging & Integrations</h3>
-                <p>Evented systems and integrations with queues and third‑party services for reliability and scale.</p>
+                <p>Event systems and integrations with queues and third‑party services for reliability and scale.</p>
                 <div class="tag-row">
                     <span class="tag">RabbitMQ</span>
                     <span class="tag">Batch/Real‑time</span>
@@ -577,7 +602,7 @@
         <div class="card">
             <p style="margin:0 0 8px;">Interested in collaborating or want a quick chat?</p>
             <div class="cta-row">
-                <a class="btn primary" href="https://www.linkedin.com/in/michael-jones-b0954554/">LinkedIn</a>
+                <a class="btn primary" href="https://www.linkedin.com/company/108743986/admin/dashboard/">LinkedIn</a>
                 <a class="btn" href="#about">About</a>
             </div>
         </div>
@@ -587,7 +612,7 @@
 <footer>
     <div class="container footer-inner">
         <div class="social">
-            <a class="btn" href="#builds">What I Build</a>
+            <a class="btn" href="#builds">What We Build</a>
             <a class="btn" href="#about">Top ↑</a>
         </div>
     </div>
@@ -620,7 +645,7 @@
     });
 
     // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year')?.textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
